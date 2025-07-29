@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}View Users{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="#" method="POST">
+        <label for="deleteUserType">Tipo:</label>
+        <select type="text" id="type" name="deleteUserType">
+            <optgroup>
+                <option value="email">E-mail</option>
+                <option value="name">Nome</option>
+                <option value="id">ID</option>
+            </optgroup>
+        </select>
+    <br>
+        <label for="deleteUserInfo">Insira o parâmetro:</label>
+        <input type="text" name="deleteUserInfo" placeholder="Insira o ID, email ou nome da conta a ser deletada" required value=""{{email if email}}/>
+    <br>
+        <hr>
+        <input type="submit" value="Enviar"/>
+    </form>
+    <hr>
+    {% for item in values %}
+        <p> ID: {{item.id}} | Name: {{item.name}} | Email: {{item.email}} </p>
+    {% endfor %}
+{% endblock %} 
+
+
